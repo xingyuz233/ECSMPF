@@ -13,7 +13,7 @@ config = yaml.load(open('config/config.yaml'), Loader=yaml.FullLoader)
 
 def parse_args() -> object:
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, default='xgboost', help='the used model')
+    parser.add_argument('--model', type=str, default='im_ensemble', help='the used model')
     parser.add_argument('--feature_type', type=str, default='n_exceptions', help='The used feature type')
     args = parser.parse_args()
     return args
@@ -49,8 +49,8 @@ def main(args):
     hat_y = model.predict(train_x)
     prob_y = model.predict_proba(train_x)[:, 1]
     test_ans = get_metrics(y_true=train_y, y_pred=hat_y, y_score=prob_y)
-    print("Feature importance")
-    print(sorted(zip(config['exception_name']['train'], model.get_feature_importance()), key=lambda x: -x[1]))
+    # print("Feature importance")
+    # print(sorted(zip(config['exception_name']['train'], model.get_feature_importance()), key=lambda x: -x[1]))
     print("metrics  acc=%.3f precision=%.3f recall=%.3f \n auc=%.3f balanced_acc=%.3f f1=%.3f \n CM=%s"\
         %(test_ans[0], test_ans[1],test_ans[2],test_ans[3],test_ans[4],test_ans[5],str(test_ans[6])))
     
@@ -59,13 +59,12 @@ def main(args):
     hat_y = model.predict(test_x)
     df_test['nc_down_label'] = hat_y
     # Save result
-    # result_dir = make_result_dir(args)
-    # df_result = df_test[df_test['nc_down_label'] == 1][['nc_ip', 'sample_time']]
-    # print('Save result')
-    # print(df_result)
-    # df_result.to_csv(os.path.join(result_dir, 'result.csv'), index=False)
+    result_dir = make_result_dir(args)
+    df_result = df_test[df_test['nc_down_label'] == 1][['nc_ip', 'sample_time']]
+    print('Save result')
+    print(df_result)
+    df_result.to_csv(os.path.join(result_dir, 'result.csv'), index=False)
     
-
 
 if __name__ == '__main__':
     main(parse_args())
