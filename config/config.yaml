@@ -8,7 +8,7 @@ data:
     test:
       nc_exceptions: 'data/raw/ecsmpf_round1_A_test_20210625/round1_A_test_nc_exceptions.csv'
       nc_info: 'data/raw/ecsmpf_round1_A_test_20210625/round1_A_test_nc_info.csv'
-      nc_sample_label: 'data/raw/ecsmpf_round1_train_20210625/round1_train_nc_sample_label.csv'
+      nc_sample_label: 'data/raw/ecsmpf_round1_A_test_20210625/round1_A_test_nc_sample_label.csv'
   process:
     train:
       nc_exceptions_key_ip_name_value_timelist: 'data/process/ecsmpf_round1_train_20210625/round1_train_nc_exceptions_key_ip_name_value_timelist.csv'
@@ -21,6 +21,9 @@ data:
       n_exceptions: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions.csv'
     test:
       n_exceptions: 'data/features/ecsmpf_round1_test_20210625/round1_test_n_exceptions.csv'
+
+result_dir: 'result'
+
 exception_name:
   train: ['exception_name_10', 'exception_name_11', 'exception_name_12', 'exception_name_14', 'exception_name_15', 'exception_name_16', 'exception_name_17', 'exception_name_18', 'exception_name_19', 'exception_name_2', 'exception_name_20', 'exception_name_21', 'exception_name_22', 'exception_name_24', 'exception_name_25', 'exception_name_26', 'exception_name_27', 'exception_name_28', 'exception_name_29', 'exception_name_3', 'exception_name_30', 'exception_name_31', 'exception_name_32', 'exception_name_33', 'exception_name_34', 'exception_name_35', 'exception_name_36', 'exception_name_37', 'exception_name_38', 'exception_name_39', 'exception_name_4', 'exception_name_40', 'exception_name_41', 'exception_name_42', 'exception_name_43', 'exception_name_44', 'exception_name_45', 'exception_name_46', 'exception_name_47', 'exception_name_48', 'exception_name_49', 'exception_name_5', 'exception_name_50', 'exception_name_51', 'exception_name_52', 'exception_name_53', 'exception_name_54', 'exception_name_55', 'exception_name_56', 'exception_name_57', 'exception_name_58', 'exception_name_59', 'exception_name_6', 'exception_name_60', 'exception_name_7', 'exception_name_8', 'exception_name_9']
   test: ['exception_name_10', 'exception_name_11', 'exception_name_12', 'exception_name_14', 'exception_name_15', 'exception_name_16', 'exception_name_17', 'exception_name_18', 'exception_name_19', 'exception_name_2', 'exception_name_20', 'exception_name_21', 'exception_name_22', 'exception_name_25', 'exception_name_26', 'exception_name_27', 'exception_name_28', 'exception_name_29', 'exception_name_3', 'exception_name_30', 'exception_name_31', 'exception_name_32', 'exception_name_33', 'exception_name_34', 'exception_name_35', 'exception_name_36', 'exception_name_37', 'exception_name_38', 'exception_name_39', 'exception_name_4', 'exception_name_40', 'exception_name_41', 'exception_name_42', 'exception_name_43', 'exception_name_45', 'exception_name_46', 'exception_name_47', 'exception_name_48', 'exception_name_49', 'exception_name_5', 'exception_name_51', 'exception_name_52', 'exception_name_53', 'exception_name_54', 'exception_name_56', 'exception_name_57', 'exception_name_58', 'exception_name_59', 'exception_name_6', 'exception_name_60', 'exception_name_7', 'exception_name_8', 'exception_name_9']
@@ -48,5 +51,5 @@ model:
       missing: 0
       importance_type: 'total_gain'
       use_label_encoder: False
-      eval_metric=: 'logloss'
-      
+      eval_metric: 'logloss'
+

@@ -22,3 +22,6 @@ class ModelAPI(BaseModel):
     def predict_proba(self, x_train: List[List[float]]) -> List[List[float]]:
         return self.model.predict_proba(x_train)
 
+    def get_feature_importance(self):
+        return self.model.get_feature_importance()
+

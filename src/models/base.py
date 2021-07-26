@@ -8,3 +8,5 @@ class BaseModel(object):
         pass
     def predict_proba(self, x_train: List[List[float]]) -> List[List[float]]:
         pass
+    def get_feature_importance(self):
+        pass
