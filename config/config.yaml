@@ -19,15 +19,24 @@ data:
   features:
     train:
       n_exceptions: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions.csv'
+      n_exceptions_recent_week: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions_recent_week.csv'
       n_exceptions_with_nc_info: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions_with_nc_info.csv'
+      n_exceptions_recent_week_with_nc_info: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions_recent_week_with_nc_info.csv'
     test:
       n_exceptions: 'data/features/ecsmpf_round1_test_20210625/round1_test_n_exceptions.csv'
+      n_exceptions_recent_week: 'data/features/ecsmpf_round1_test_20210625/round1_test_n_exceptions_recent_week.csv'
       n_exceptions_with_nc_info: 'data/features/ecsmpf_round1_test_20210625/round1_test_n_exceptions_with_nc_info.csv'
+      n_exceptions_recent_week_with_nc_info: 'data/features/ecsmpf_round1_test_20210625/round1_test_n_exceptions_recent_week_with_nc_info.csv'
+
 result_dir: 'result'
 
 exception_name:
   train: ['exception_name_10', 'exception_name_11', 'exception_name_12', 'exception_name_14', 'exception_name_15', 'exception_name_16', 'exception_name_17', 'exception_name_18', 'exception_name_19', 'exception_name_2', 'exception_name_20', 'exception_name_21', 'exception_name_22', 'exception_name_24', 'exception_name_25', 'exception_name_26', 'exception_name_27', 'exception_name_28', 'exception_name_29', 'exception_name_3', 'exception_name_30', 'exception_name_31', 'exception_name_32', 'exception_name_33', 'exception_name_34', 'exception_name_35', 'exception_name_36', 'exception_name_37', 'exception_name_38', 'exception_name_39', 'exception_name_4', 'exception_name_40', 'exception_name_41', 'exception_name_42', 'exception_name_43', 'exception_name_44', 'exception_name_45', 'exception_name_46', 'exception_name_47', 'exception_name_48', 'exception_name_49', 'exception_name_5', 'exception_name_50', 'exception_name_51', 'exception_name_52', 'exception_name_53', 'exception_name_54', 'exception_name_55', 'exception_name_56', 'exception_name_57', 'exception_name_58', 'exception_name_59', 'exception_name_6', 'exception_name_60', 'exception_name_7', 'exception_name_8', 'exception_name_9']
   test: ['exception_name_10', 'exception_name_11', 'exception_name_12', 'exception_name_14', 'exception_name_15', 'exception_name_16', 'exception_name_17', 'exception_name_18', 'exception_name_19', 'exception_name_2', 'exception_name_20', 'exception_name_21', 'exception_name_22', 'exception_name_25', 'exception_name_26', 'exception_name_27', 'exception_name_28', 'exception_name_29', 'exception_name_3', 'exception_name_30', 'exception_name_31', 'exception_name_32', 'exception_name_33', 'exception_name_34', 'exception_name_35', 'exception_name_36', 'exception_name_37', 'exception_name_38', 'exception_name_39', 'exception_name_4', 'exception_name_40', 'exception_name_41', 'exception_name_42', 'exception_name_43', 'exception_name_45', 'exception_name_46', 'exception_name_47', 'exception_name_48', 'exception_name_49', 'exception_name_5', 'exception_name_51', 'exception_name_52', 'exception_name_53', 'exception_name_54', 'exception_name_56', 'exception_name_57', 'exception_name_58', 'exception_name_59', 'exception_name_6', 'exception_name_60', 'exception_name_7', 'exception_name_8', 'exception_name_9']
+
+nc_info_name:
+  train: []
+  test: []
 
 model:
   random_state: 2021
@@ -38,7 +47,7 @@ model:
       n_estimators: 242
       verbosity: 1
       objective: 'binary:logistic'
-      n_jobs: -1
+      n_jobs: 4
       gamma: 2.735
       min_child_weight: 0.5
       max_delta_step: 0
@@ -54,8 +63,8 @@ model:
       use_label_encoder: False
       eval_metric: 'logloss'
     im_ensemble:
-      sampling_strategy: 0.5
-      n_jobs: -1
+      sampling_strategy: 0.25
+      n_jobs: 2
       verbose: 1
-      n_estimators: 800
+      n_estimators: 100
 

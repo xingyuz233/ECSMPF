@@ -2,7 +2,7 @@ import argparse
 import pandas as pd
 import yaml
 
-config = yaml.load('config/config.yaml')
+config = yaml.load(open('config/config.yaml'))
 nc_exceptions = pd.read_csv(config.data.process.train.nc_exceptions_key_ip_name_value_timelist)
 
 def parse_args():

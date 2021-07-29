@@ -134,3 +134,4 @@ pretrain_models/
 .vscode/
 nohup.out
 result/
+images/

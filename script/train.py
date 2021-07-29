@@ -14,7 +14,8 @@ config = yaml.load(open('config/config.yaml'), Loader=yaml.FullLoader)
 def parse_args() -> object:
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default='im_ensemble', help='the used model')
-    parser.add_argument('--feature_type', type=str, default='n_exceptions', help='The used feature type')
+    parser.add_argument('--feature_type', type=str, default='n_exceptions_recent_week', help='The used feature type')
+    parser.add_argument('--topk', type=str, default=None)
     args = parser.parse_args()
     return args
 
@@ -57,14 +58,22 @@ def main(args):
     # Predict on test set
     test_x, df_test = read_test_features(args.feature_type)
     hat_y = model.predict(test_x)
+    score_y = model.predict_proba(test_x)[:, 1]
     df_test['nc_down_label'] = hat_y
+    df_test['nc_down_score'] = score_y
     # Save result
     result_dir = make_result_dir(args)
-    df_result = df_test[df_test['nc_down_label'] == 1][['nc_ip', 'sample_time']]
-    print('Save result')
-    print(df_result)
-    df_result.to_csv(os.path.join(result_dir, 'result.csv'), index=False)
-    
+    if args.topk:
+        print('Return topk of the highest scores predicted by the classifier')
+        df_result = df_test.sort_values('nc_down_score', ascending=False).head(args.topk)[['nc_ip', 'sample_time']]
+        print(df_result)
+        df_result.to_csv(os.path.join(result_dir, 'result.csv'), index=False)
+    else:
+        print('Do not set topk, so just save the positive predictions by classifier')
+        df_result = df_test[df_test['nc_down_label'] == 1][['nc_ip', 'sample_time']]
+        print(df_result)
+        df_result.to_csv(os.path.join(result_dir, 'result.csv'), index=False)
+        
 
 if __name__ == '__main__':
     main(parse_args())

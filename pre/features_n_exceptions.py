@@ -13,7 +13,7 @@ exception_name_columns = config['exception_name']['train']
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--days', type=int, default=60, help='days before sample_time')
+    parser.add_argument('--days', type=int, default=2, help='days before sample_time')
     args = parser.parse_args()
     return args
 
