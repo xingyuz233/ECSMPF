@@ -22,8 +22,8 @@ def get_date_list_from_intervals(start_date, end_date, date_list):
     return date_list[l: r]
 
 def features_n_exceptions_recent_week(mode):
-    if mode not in ['train', 'test']:
-        print('mode must be train or test !')
+    if mode not in ['train', 'A_test', 'B_test']:
+        print('mode must be train or A_test, B_test !')
         raise IndexError
     
     # Read exceptions and sample data
@@ -70,10 +70,10 @@ def features_n_exceptions_recent_week(mode):
     ].to_csv(config['data']['features'][mode]['n_exceptions_recent_week'], index=False)
 
 def main():
-    print('Feature process of n_exceptions in recent week for TRAIN.')
-    features_n_exceptions_recent_week('train')
+    # print('Feature process of n_exceptions in recent week for TRAIN.')
+    # features_n_exceptions_recent_week('train')
     print('Feature process of n_exceptions in recent week for TEST.')
-    features_n_exceptions_recent_week('test')
+    features_n_exceptions_recent_week('B_test')
 
 if __name__ == '__main__':
     main()

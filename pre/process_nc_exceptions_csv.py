@@ -7,11 +7,11 @@ import yaml
 config = yaml.load(open('config/config.yaml'))
 
 exception_raw_train_path = config['data']['raw']['train']['nc_exceptions']
-exception_raw_test_path = config['data']['raw']['test']['nc_exceptions']
+exception_raw_test_path = config['data']['raw']['B_test']['nc_exceptions']
 exception_save_train_path_1 = config['data']['process']['train']['nc_exceptions_key_ip_name_value_timelist']
 exception_save_train_path_2 = config['data']['process']['train']['nc_exceptions_key_ip_column_name_value_timelist']
-exception_save_test_path_1 = config['data']['process']['test']['nc_exceptions_key_ip_name_value_timelist']
-exception_save_test_path_2 = config['data']['process']['test']['nc_exceptions_key_ip_column_name_value_timelist']
+exception_save_test_path_1 = config['data']['process']['B_test']['nc_exceptions_key_ip_name_value_timelist']
+exception_save_test_path_2 = config['data']['process']['B_test']['nc_exceptions_key_ip_column_name_value_timelist']
 exception_name_train = config['exception_name']['train']
 
 def process(load_path, save_path_1, save_path_2):
@@ -46,5 +46,5 @@ def process(load_path, save_path_1, save_path_2):
     del new_tbl
 
 if __name__ == '__main__':
-    # process(exception_raw_test_path, exception_save_test_path_1, exception_save_test_path_2)
-    process(exception_raw_train_path, exception_save_train_path_1, exception_save_train_path_2)
+    process(exception_raw_test_path, exception_save_test_path_1, exception_save_test_path_2)
+    # process(exception_raw_train_path, exception_save_train_path_1, exception_save_train_path_2)

@@ -2,20 +2,26 @@ from typing import List
 import yaml
 from src.models.base import BaseModel
 from xgboost.sklearn import XGBClassifier
+from sklearn.linear_model import LogisticRegression
 from imblearn.ensemble import EasyEnsembleClassifier  # adaboost
 
 config = yaml.load(open('config/config.yaml'), Loader=yaml.FullLoader)
+model_constructor_dict = {
+    'xgboost': XGBClassifier,
+    'logistic_regression': LogisticRegression
+}
 
 class IM_ENSEMBLE(BaseModel):
     def __init__(self) -> None:
         super(IM_ENSEMBLE, self).__init__()
-        self.xgb = XGBClassifier(
-            **config['model']['hyperameters']['xgboost'],
+        base_estimator_name = config['model']['hyperameters']['im_ensemble']['custom']['base_estimator']
+        base_estimator = model_constructor_dict[base_estimator_name](
+            **config['model']['hyperameters'][base_estimator_name],
             random_state=config['model']['random_state']
         )
         self.model = EasyEnsembleClassifier(
-            **config['model']['hyperameters']['im_ensemble'],
-            base_estimator=self.xgb, 
+            **config['model']['hyperameters']['im_ensemble']['built_in'],
+            base_estimator=base_estimator, 
             random_state=config['model']['random_state']
         )
     def fit(self, x_train: List[List[float]], y_train: List[int]) -> None:

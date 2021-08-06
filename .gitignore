@@ -135,3 +135,4 @@ pretrain_models/
 nohup.out
 result/
 images/
+analysis/

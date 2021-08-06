@@ -5,28 +5,60 @@ data:
       nc_exceptions: 'data/raw/ecsmpf_round1_train_20210625/round1_train_nc_exceptions.csv'
       nc_info: 'data/raw/ecsmpf_round1_train_20210625/round1_train_nc_info.csv'
       nc_sample_label: 'data/raw/ecsmpf_round1_train_20210625/round1_train_nc_sample_label.csv'
-    test:
+    A_test:
       nc_exceptions: 'data/raw/ecsmpf_round1_A_test_20210625/round1_A_test_nc_exceptions.csv'
       nc_info: 'data/raw/ecsmpf_round1_A_test_20210625/round1_A_test_nc_info.csv'
       nc_sample_label: 'data/raw/ecsmpf_round1_A_test_20210625/round1_A_test_nc_sample_label.csv'
+    B_test:
+      nc_exceptions: 'data/raw/ecsmpf_round1_B_test_20210625/round1_B_test_nc_exceptions.csv'
+      nc_info: 'data/raw/ecsmpf_round1_B_test_20210625/round1_B_test_nc_info.csv'
+      nc_sample_label: 'data/raw/ecsmpf_round1_B_test_20210625/round1_B_test_nc_sample_label.csv'
   process:
     train:
       nc_exceptions_key_ip_name_value_timelist: 'data/process/ecsmpf_round1_train_20210625/round1_train_nc_exceptions_key_ip_name_value_timelist.csv'
       nc_exceptions_key_ip_column_name_value_timelist: 'data/process/ecsmpf_round1_train_20210625/round1_train_nc_exceptions_key_ip_column_name_value_timelist.csv'
-    test:
-      nc_exceptions_key_ip_name_value_timelist: 'data/process/ecsmpf_round1_test_20210625/round1_test_nc_exceptions_key_ip_name_value_timelist.csv'
-      nc_exceptions_key_ip_column_name_value_timelist: 'data/process/ecsmpf_round1_test_20210625/round1_test_nc_exceptions_key_ip_column_name_value_timelist.csv'
+    aug_train:
+      nc_sample_label: 'data/process/ecsmpf_round1_aug_train_20210625/round1_aug_train_nc_sample_label.csv'
+      nc_exceptions_key_ip_name_value_timelist: 'data/process/ecsmpf_round1_aug_train_20210625/round1_aug_train_nc_exceptions_key_ip_name_value_timelist'
+      nc_exceptions_key_ip_column_name_value_timelist: data/process/ecsmpf_round1_aug_train_20210625/round1_aug_train_nc_exceptions_key_ip_column_name_value_timelist.csv
+    A_test:
+      nc_sample_pseudo_label: 'data/process/ecsmpf_round1_A_test_20210625/round1_test_nc_sample_pseudo_label.csv'
+      nc_exceptions_key_ip_name_value_timelist: 'data/process/ecsmpf_round1_A_test_20210625/round1_test_nc_exceptions_key_ip_name_value_timelist.csv'
+      nc_exceptions_key_ip_column_name_value_timelist: 'data/process/ecsmpf_round1_A_test_20210625/round1_test_nc_exceptions_key_ip_column_name_value_timelist.csv'
+    B_test:
+      nc_sample_pseudo_label: 'data/process/ecsmpf_round1_B_test_20210625/round1_test_nc_sample_pseudo_label.csv'
+      nc_exceptions_key_ip_name_value_timelist: 'data/process/ecsmpf_round1_B_test_20210625/round1_test_nc_exceptions_key_ip_name_value_timelist.csv'
+      nc_exceptions_key_ip_column_name_value_timelist: 'data/process/ecsmpf_round1_B_test_20210625/round1_test_nc_exceptions_key_ip_column_name_value_timelist.csv'
+
   features:
     train:
       n_exceptions: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions.csv'
       n_exceptions_recent_week: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions_recent_week.csv'
       n_exceptions_with_nc_info: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions_with_nc_info.csv'
       n_exceptions_recent_week_with_nc_info: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions_recent_week_with_nc_info.csv'
-    test:
-      n_exceptions: 'data/features/ecsmpf_round1_test_20210625/round1_test_n_exceptions.csv'
-      n_exceptions_recent_week: 'data/features/ecsmpf_round1_test_20210625/round1_test_n_exceptions_recent_week.csv'
-      n_exceptions_with_nc_info: 'data/features/ecsmpf_round1_test_20210625/round1_test_n_exceptions_with_nc_info.csv'
-      n_exceptions_recent_week_with_nc_info: 'data/features/ecsmpf_round1_test_20210625/round1_test_n_exceptions_recent_week_with_nc_info.csv'
+      n_exceptions_recent_week_with_diff: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions_recent_week_with_diff.csv'
+      n_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_train_20210625/round1_train_n_exceptions_recent_week_filter.csv'
+      rate_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_train_20210625/round1_train_rate_exceptions_recent_week_filter.csv'
+      sum_rate_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_train_20210625/round1_train_sum_rate_exceptions_recent_week_filter.csv'
+    aug_train:
+      n_exceptions_recent_week: 'data/features/ecsmpf_round1_aug_train_20210625/round1_aug_train_n_exceptions_recent_week.csv'
+      n_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_aug_train_20210625/round1_aug_train_n_exceptions_recent_week_filter.csv'
+      sum_rate_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_aug_train_20210625/round1_aug_train_sum_rate_exceptions_recent_week_filter.csv'
+      rate_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_aug_train_20210625/round1_aug_train_rate_exceptions_recent_week_filter.csv'
+    A_test:
+      n_exceptions: 'data/features/ecsmpf_round1_A_test_20210625/round1_test_n_exceptions.csv'
+      n_exceptions_recent_week: 'data/features/ecsmpf_round1_A_test_20210625/round1_test_n_exceptions_recent_week.csv'
+      n_exceptions_with_nc_info: 'data/features/ecsmpf_round1_A_test_20210625/round1_test_n_exceptions_with_nc_info.csv'
+      n_exceptions_recent_week_with_nc_info: 'data/features/ecsmpf_round1_A_test_20210625/round1_test_n_exceptions_recent_week_with_nc_info.csv'
+      n_exceptions_recent_week_with_diff: 'data/features/ecsmpf_round1_A_test_20210625/round1_test_n_exceptions_recent_week_with_diff.csv'
+      n_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_A_test_20210625/round1_test_n_exceptions_recent_week_filter.csv'
+      rate_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_A_test_20210625/round1_test_rate_exceptions_recent_week_filter.csv'
+      sum_rate_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_A_test_20210625/round1_test_sum_rate_exceptions_recent_week_filter.csv'
+    B_test:
+      n_exceptions_recent_week: 'data/features/ecsmpf_round1_B_test_20210625/round1_test_n_exceptions_recent_week.csv'
+      n_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_B_test_20210625/round1_test_n_exceptions_recent_week_filter.csv'
+      sum_rate_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_B_test_20210625/round1_test_sum_rate_exceptions_recent_week_filter.csv'
+      rate_exceptions_recent_week_filter: 'data/features/ecsmpf_round1_B_test_20210625/round1_test_rate_exceptions_recent_week_filter.csv'
 
 result_dir: 'result'
 
@@ -42,7 +74,7 @@ model:
   random_state: 2021
   hyperameters:
     xgboost:
-      max_depth: 20 
+      max_depth: 10 
       learning_rate: 0.024
       n_estimators: 242
       verbosity: 1
@@ -53,18 +85,40 @@ model:
       max_delta_step: 0
       subsample: 0.209
       colsample_bytree: 0.5
+      # subsample: 1
+      # colsample_bytree: 1
       colsample_bylevel: 1
       reg_alpha: 0.3576
       reg_lambda: 0.8618
       scale_pos_weight: 1
-      # random_state: 666
+      # random_state: 2021
       missing: 0
       importance_type: 'total_gain'
       use_label_encoder: False
       eval_metric: 'logloss'
+    logistic_regression:
+      penalty: 'l2'
+      dual: False
+      tol: 0.0001
+      C: 1.0
+      fit_intercept: True
+      intercept_scaling: 1 
+      # class_weight: None
+      # solver: 'lbfgs'
+      solver: 'sag'
+      max_iter: 100 
+      multi_class: 'auto'
+      verbose: 0 
+      warm_start: False
+      # n_jobs: 4
+      # l1_ratio: None
+
     im_ensemble:
-      sampling_strategy: 0.25
-      n_jobs: 2
-      verbose: 1
-      n_estimators: 100
+      built_in:
+        sampling_strategy: 0.25
+        n_jobs: 4
+        verbose: 1
+        n_estimators: 100
+      custom:
+        base_estimator: 'xgboost'
 

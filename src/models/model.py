@@ -4,11 +4,13 @@ import yaml
 from src.models.base import BaseModel
 from src.models.xgb import XGBOOST
 from src.models.im_ensemble import IM_ENSEMBLE
+from src.models.lr import LOGISTIC_REGRESSION
 
 config = yaml.load(open('config/config.yaml'), Loader=yaml.FullLoader)
 model_constructor_dict = {
     'xgboost': XGBOOST,
-    'im_ensemble': IM_ENSEMBLE
+    'im_ensemble': IM_ENSEMBLE,
+    'logistic_regression': LOGISTIC_REGRESSION
 }
 
 class ModelAPI(BaseModel):
