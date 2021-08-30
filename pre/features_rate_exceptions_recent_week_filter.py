@@ -11,7 +11,7 @@ import bisect
 config = yaml.load(open('config/config.yaml'), Loader=yaml.FullLoader)
 exception_name_columns = config['exception_name']['train']
 
-n_exceptions_train = pd.read_csv(config['data']['features']['train']['n_exceptions_recent_week'])
+n_exceptions_train = pd.read_csv(config['data']['features']['aug_train']['n_exceptions_recent_week_filter'])
 n_exceptions_test = pd.read_csv(config['data']['features']['B_test']['n_exceptions_recent_week'])
 
 n_exceptions_train = n_exceptions_train[sum([n_exceptions_train[exception_name+'_cnt_'+str(i)] for exception_name in exception_name_columns for i in range(0, 8)]) > 0]
@@ -37,6 +37,6 @@ for exception_name in exception_name_columns:
 rate_exceptions_train = n_exceptions_train[['nc_ip', 'sample_time', 'nc_down_label'] + [exception_name + '_rate_' + str(k) for exception_name in exception_name_columns for k in range(0, 7)]]
 rate_exceptions_test = n_exceptions_test[['nc_ip', 'sample_time', 'nc_down_label'] + [exception_name + '_rate_' + str(k) for exception_name in exception_name_columns for k in range(0, 7)]]
 
-rate_exceptions_train.to_csv(config['data']['features']['train']['rate_exceptions_recent_week_filter'], index=False)
-rate_exceptions_test.to_csv(config['data']['features']['B_test']['rate_exceptions_recent_week_filter'], index=False)
+rate_exceptions_train.to_csv(config['data']['features']['aug_train']['rate_exceptions_recent_week_filter'], index=False)
+# rate_exceptions_test.to_csv(config['data']['features']['B_test']['rate_exceptions_recent_week_filter'], index=False)
 

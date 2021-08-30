@@ -22,14 +22,18 @@ def get_date_list_from_intervals(start_date, end_date, date_list):
     return date_list[l: r]
 
 def features_n_exceptions_recent_week(mode):
-    if mode not in ['train', 'A_test', 'B_test']:
+    if mode not in ['train', 'aug_train', 'A_test', 'B_test']:
         print('mode must be train or A_test, B_test !')
         raise IndexError
     
     # Read exceptions and sample data
     print('Read exceptions and sample data')
-    nc_exceptions = pd.read_csv(config['data']['process'][mode]['nc_exceptions_key_ip_column_name_value_timelist'])
-    nc_sample_label = pd.read_csv(config['data']['raw'][mode]['nc_sample_label'])
+    if mode == 'aug_train':
+        nc_exceptions = pd.read_csv(config['data']['process']['train']['nc_exceptions_key_ip_column_name_value_timelist'])
+        nc_sample_label = pd.read_csv(config['data']['process']['aug_train']['nc_sample_label'])
+    else:
+        nc_exceptions = pd.read_csv(config['data']['process'][mode]['nc_exceptions_key_ip_column_name_value_timelist'])
+        nc_sample_label = pd.read_csv(config['data']['raw'][mode]['nc_sample_label'])
     
     # Fill na with empty list for all exception columns
     print('Fill na with empty list for all exception columns')
@@ -70,10 +74,10 @@ def features_n_exceptions_recent_week(mode):
     ].to_csv(config['data']['features'][mode]['n_exceptions_recent_week'], index=False)
 
 def main():
-    # print('Feature process of n_exceptions in recent week for TRAIN.')
-    # features_n_exceptions_recent_week('train')
-    print('Feature process of n_exceptions in recent week for TEST.')
-    features_n_exceptions_recent_week('B_test')
+    print('Feature process of n_exceptions in recent week for TRAIN.')
+    features_n_exceptions_recent_week('aug_train')
+    # print('Feature process of n_exceptions in recent week for TEST.')
+    # features_n_exceptions_recent_week('B_test')
 
 if __name__ == '__main__':
     main()

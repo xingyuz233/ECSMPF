@@ -46,5 +46,5 @@ def process(load_path, save_path_1, save_path_2):
     del new_tbl
 
 if __name__ == '__main__':
-    process(exception_raw_test_path, exception_save_test_path_1, exception_save_test_path_2)
-    # process(exception_raw_train_path, exception_save_train_path_1, exception_save_train_path_2)
+    # process(exception_raw_test_path, exception_save_test_path_1, exception_save_test_path_2)
+    process(exception_raw_train_path, exception_save_train_path_1, exception_save_train_path_2)

@@ -16,15 +16,24 @@ config = yaml.load(open('config/config.yaml'), Loader=yaml.FullLoader)
 def parse_args() -> object:
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default='im_ensemble', help='the used model')
-    parser.add_argument('--feature_type', type=str, default='rate_exceptions_recent_week_filter', help='The used feature type')
+    parser.add_argument('--aug', action='store_true')
+    parser.add_argument('--feature_type', type=str, default='n_exceptions_recent_week_filter', help='The used feature type')
     args = parser.parse_args()
     return args
 
 
-def read_train_features(feature_type: str):
+def read_train_features(feature_type: str, aug: bool):
     feature_path = config['data']['features']['train'][feature_type]
     df_feature = pd.read_csv(feature_path)
     print('Reading training features from {}.'.format(feature_path))
+    if aug:
+        aug_feature_path = config['data']['features']['aug_train'][feature_type]
+        df_aug_feature = pd.read_csv(aug_feature_path)
+        print('Reading aug features from {}.'.format(aug_feature_path))
+        print('Union features of train set and aug-train set.')
+        df_feature = pd.concat([df_feature, df_aug_feature], axis=0)
+
+
     # print('Training dataframe: ', df_feature.iloc[:, 3:])
     # print('Training labels', df_feature.loc[:, 'nc_down_label'])
     train_x, train_y = df_feature.iloc[:, 3:].values, df_feature.loc[:, 'nc_down_label'].astype(int).values
@@ -44,7 +53,7 @@ def read_test_features(feature_type: str):
 
 def main(args):
     # Read Training features
-    train_x, train_y = read_train_features(args.feature_type)
+    train_x, train_y = read_train_features(args.feature_type, args.aug)
     # Init model
     model = ModelAPI(args.model)
     # Fit model
